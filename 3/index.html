@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+  <title>BoomingBulls P2P — USDT ⇄ INR Desk</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+
+      --purple: #6d28d9;
+      --purple-hover: #5b21b6;
+      --purple-light: #f5f3ff;
+
+      --green: #059669;
+      --green-light: #ecfdf5;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      padding-bottom: 88px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    /* TOP STATUS */
+
+    .status-strip {
+      background: var(--purple-light);
+      border-bottom: 1px solid #ddd6fe;
+      padding: 7px 12px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+
+      text-align: center;
+      font-size: 12px;
+      font-weight: 600;
+      color: #5b21b6;
+    }
+
+    .pulse-dot {
+      width: 7px;
+      height: 7px;
+      background: #10b981;
+      border-radius: 50%;
+
+      box-shadow: 0 0 0 2px #a7f3d0;
+
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(.95);
+        box-shadow: 0 0 0 0 rgba(16,185,129,.7);
+      }
+
+      70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 6px rgba(16,185,129,0);
+      }
+
+      100% {
+        transform: scale(.95);
+        box-shadow: 0 0 0 0 rgba(16,185,129,0);
+      }
+    }
+
+    /* HEADER */
+
+    header {
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      padding: 12px 0;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid var(--border);
+      background: #fff;
+    }
+
+    .profile-info h3 {
+      font-size: 15px;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .profile-info span {
+      display: block;
+      margin-top: 2px;
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .merchant-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+
+      background: var(--green-light);
+      color: var(--green);
+
+      padding: 4px 8px;
+      border-radius: 6px;
+
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .tg-circle-btn {
+      width: 39px;
+      height: 39px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: #229ed9;
+      color: white;
+
+      border-radius: 50%;
+      text-decoration: none;
+
+      box-shadow: 0 3px 8px rgba(34,158,217,.28);
+
+      transition: .15s ease;
+    }
+
+    .tg-circle-btn:hover {
+      background: #168ac1;
+      transform: translateY(-1px);
+    }
+
+    .tg-circle-btn:active {
+      transform: scale(.95);
+    }
+
+    /* HERO */
+
+    .hero {
+      text-align: center;
+      padding: 23px 0 17px;
+    }
+
+    .hero-logo {
+      width: 68px;
+      height: 68px;
+
+      object-fit: contain;
+
+      margin-bottom: 10px;
+
+      border-radius: 16px;
+
+      filter: drop-shadow(0 5px 12px rgba(109,40,217,.12));
+    }
+
+    .hero h1 {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -.6px;
+      line-height: 1.22;
+
+      margin-bottom: 8px;
+    }
+
+    .hero h1 span {
+      color: var(--purple);
+    }
+
+    .hero p {
+      max-width: 92%;
+      margin: auto;
+
+      color: var(--muted);
+      font-size: 13.5px;
+    }
+
+    /* CARD */
+
+    .card {
+      background: var(--card);
+
+      border: 1px solid var(--border);
+      border-radius: 14px;
+
+      padding: 16px;
+      margin-bottom: 14px;
+
+      box-shadow: 0 1px 4px rgba(0,0,0,.04);
+    }
+
+    .specs {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      margin-bottom: 16px;
+    }
+
+    .spec-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding-bottom: 8px;
+
+      border-bottom: 1px dashed var(--border);
+
+      font-size: 13px;
+    }
+
+    .spec-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .spec-label {
+      color: var(--muted);
+    }
+
+    .spec-val {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+
+      font-weight: 600;
+    }
+
+    .text-green {
+      color: var(--green);
+    }
+
+    /* RATE */
+
+    .rate-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+
+      background: var(--green-light);
+      color: #047857;
+
+      padding: 3px 8px;
+      border-radius: 6px;
+
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .rate-indicator {
+      font-size: 11px;
+      transition: .25s ease;
+    }
+
+    .rate-text {
+      min-width: 65px;
+      text-align: right;
+
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* BUTTONS */
+
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .btn-primary {
+      width: 100%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+
+      padding: 13px;
+
+      border-radius: 10px;
+
+      color: white;
+      text-decoration: none;
+
+      font-size: 14.5px;
+      font-weight: 700;
+
+      transition: .15s ease;
+    }
+
+    .btn-telegram {
+      background: #229ed9;
+      box-shadow: 0 3px 9px rgba(34,158,217,.25);
+    }
+
+    .btn-telegram:hover {
+      background: #168ac1;
+    }
+
+    .btn-telegram:active {
+      transform: scale(.98);
+    }
+
+    /* FLOW */
+
+    .flow-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .flow-step {
+      background: #f1f5f9;
+
+      padding: 10px 7px;
+      border-radius: 8px;
+
+      text-align: center;
+      font-size: 11px;
+    }
+
+    .flow-step strong {
+      display: block;
+
+      color: var(--text);
+
+      font-size: 11.5px;
+      margin-bottom: 2px;
+    }
+
+    /* TRUST */
+
+    .trust-items {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      padding: 12px;
+
+      background: white;
+
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+
+    .trust-icon {
+      flex-shrink: 0;
+
+      width: 36px;
+      height: 36px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: var(--purple-light);
+
+      border-radius: 8px;
+    }
+
+    .trust-icon svg {
+      width: 20px;
+      height: 20px;
+
+      color: var(--purple);
+    }
+
+    .trust-item h4 {
+      font-size: 13px;
+      font-weight: 700;
+
+      margin-bottom: 2px;
+    }
+
+    .trust-item p {
+      color: var(--muted);
+
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    /* BOTTOM CTA */
+
+    .bottom-bar {
+      position: fixed;
+
+      left: 0;
+      right: 0;
+      bottom: 0;
+
+      z-index: 99;
+
+      background: white;
+
+      border-top: 1px solid var(--border);
+
+      padding: 10px 16px;
+    }
+
+    .bottom-bar .container {
+      padding: 0;
+    }
+
+    .bottom-btn-group .btn-primary {
+      padding: 12px;
+      font-size: 14px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 360px) {
+      .hero h1 {
+        font-size: 23px;
+      }
+
+      .merchant-badge {
+        display: none;
+      }
+
+      .flow-step {
+        font-size: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- STATUS -->
+
+  <div class="status-strip">
+    <div class="pulse-dot"></div>
+    BoomingBulls P2P Desk Active &bull; USDT ⇄ INR
+  </div>
+
+
+  <!-- HEADER -->
+
+  <header>
+    <div class="container nav">
+
+      <div class="profile">
+
+        <img
+          class="avatar"
+          src="https://d1yei2z3i6k35z.cloudfront.net/13184094/6ac6b5f3a59580.18366605_BoomingBullsP2PTradingEmblem.png"
+          alt="BoomingBulls P2P"
+        />
+
+        <div class="profile-info">
+          <h3>BoomingBulls P2P</h3>
+          <span>Online & Ready</span>
+        </div>
+
+      </div>
+
+
+      <div class="nav-actions">
+
+        <div class="merchant-badge">
+
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+          </svg>
+
+          Verified
+
+        </div>
+
+
+        <a
+          id="headerTgBtn"
+          href="#"
+          class="tg-circle-btn"
+          title="Contact BoomingBulls P2P"
+          onclick="trackLead('Header_Telegram')"
+        >
+
+          <svg
+            width="19"
+            height="19"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path d="M21.8 4.6L18.7 19.2c-.2 1-.8 1.2-1.6.8l-4.4-3.3-2.1 2c-.2.2-.4.4-.8.4l.3-4.5 8.2-7.4c.4-.4-.1-.6-.6-.2L7.6 13.7l-4.4-1.4c-1-.3-1-1 .2-1.4L20.6 4c.8-.3 1.5.2 1.2.6z"/>
+          </svg>
+
+        </a>
+
+      </div>
+
+    </div>
+  </header>
+
+
+  <!-- MAIN -->
+
+  <main class="container">
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+      <img
+        class="hero-logo"
+        src="https://d1yei2z3i6k35z.cloudfront.net/13184094/6ac6b5f3a59580.18366605_BoomingBullsP2PTradingEmblem.png"
+        alt="BoomingBulls P2P"
+      />
+
+      <h1>
+        Direct <span>USDT ⇄ INR</span><br>
+        P2P Settlement
+      </h1>
+
+      <p>
+        Connect with the BoomingBulls P2P desk for direct settlement,
+        rate confirmation and transaction details.
+      </p>
+
+    </section>
+
+
+    <!-- MAIN CARD -->
+
+    <div class="card">
+
+      <div class="specs">
+
+        <!-- RATE -->
+
+        <div class="spec-row">
+
+          <span class="spec-label">
+            Indicative USDT Rate
+          </span>
+
+          <span class="spec-val">
+
+            <span class="rate-pill">
+
+              <span
+                id="rateArrow"
+                class="rate-indicator"
+              >
+                ▲
+              </span>
+
+              <span
+                id="liveRate"
+                class="rate-text"
+              >
+                ₹105.00
+              </span>
+
+            </span>
+
+          </span>
+
+        </div>
+
+
+        <!-- PAYMENT -->
+
+        <div class="spec-row">
+
+          <span class="spec-label">
+            Payment Modes
+          </span>
+
+          <span class="spec-val">
+            UPI / IMPS / RTGS
+          </span>
+
+        </div>
+
+
+        <!-- SPEED -->
+
+        <div class="spec-row">
+
+          <span class="spec-label">
+            Settlement Speed
+          </span>
+
+          <span class="spec-val">
+            Subject to confirmation
+          </span>
+
+        </div>
+
+
+        <!-- DEAL -->
+
+        <div class="spec-row">
+
+          <span class="spec-label">
+            Deal Type
+          </span>
+
+          <span class="spec-val text-green">
+            P2P Desk
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <!-- TELEGRAM CTA -->
+
+      <div class="btn-group">
+
+        <a
+          id="mainTgBtn"
+          href="#"
+          class="btn-primary btn-telegram"
+          onclick="trackLead('Hero_Telegram')"
+        >
+
+          <svg
+            width="21"
+            height="21"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path d="M21.8 4.6L18.7 19.2c-.2 1-.8 1.2-1.6.8l-4.4-3.3-2.1 2c-.2.2-.4.4-.8.4l.3-4.5 8.2-7.4c.4-.4-.1-.6-.6-.2L7.6 13.7l-4.4-1.4c-1-.3-1-1 .2-1.4L20.6 4c.8-.3 1.5.2 1.2.6z"/>
+          </svg>
+
+          Chat on Telegram
+
+        </a>
+
+      </div>
+
+
+      <!-- FLOW -->
+
+      <div class="flow-steps">
+
+        <div class="flow-step">
+          <strong>1. Contact Desk</strong>
+          Share volume
+        </div>
+
+        <div class="flow-step">
+          <strong>2. Confirm Rate</strong>
+          Discuss current rate
+        </div>
+
+        <div class="flow-step">
+          <strong>3. Settlement</strong>
+          Complete the deal
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- TRUST -->
+
+    <div class="trust-items">
+
+      <div class="trust-item">
+
+        <div class="trust-icon">
+
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+
+        </div>
+
+        <div>
+
+          <h4>
+            Direct P2P Desk
+          </h4>
+
+          <p>
+            Connect directly with the desk to discuss
+            available rates, volume and settlement details.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="trust-item">
+
+        <div class="trust-icon">
+
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 7v5l3 2"/>
+          </svg>
+
+        </div>
+
+        <div>
+
+          <h4>
+            Fast Communication
+          </h4>
+
+          <p>
+            Use Telegram to get the current quote and
+            coordinate your P2P settlement.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="trust-item">
+
+        <div class="trust-icon">
+
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M4 7h16M4 12h16M4 17h10"/>
+          </svg>
+
+        </div>
+
+        <div>
+
+          <h4>
+            Transparent Deal Flow
+          </h4>
+
+          <p>
+            Discuss the amount, rate and settlement
+            process before proceeding.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <!-- STICKY TELEGRAM CTA -->
+
+  <div class="bottom-bar">
+
+    <div class="container">
+
+      <div class="bottom-btn-group">
+
+        <a
+          id="stickyTgBtn"
+          href="#"
+          class="btn-primary btn-telegram"
+          onclick="trackLead('Sticky_Telegram')"
+        >
+
+          <svg
+            width="19"
+            height="19"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path d="M21.8 4.6L18.7 19.2c-.2 1-.8 1.2-1.6.8l-4.4-3.3-2.1 2c-.2.2-.4.4-.8.4l.3-4.5 8.2-7.4c.4-.4-.1-.6-.6-.2L7.6 13.7l-4.4-1.4c-1-.3-1-1 .2-1.4L20.6 4c.8-.3 1.5.2 1.2.6z"/>
+          </svg>
+
+          Chat on Telegram
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <script>
+
+    /*
+      ===========================
+      TELEGRAM CONFIG
+      ===========================
+    */
+
+    const TG_USER = "boomingbullsP2P";
+
+    const MESSAGE =
+      "I want to sell my USDT. ❤️";
+
+    const tgUrl =
+      `https://t.me/${TG_USER}?text=${encodeURIComponent(MESSAGE)}`;
+
+
+    /*
+      ===========================
+      SET ALL TELEGRAM BUTTONS
+      ===========================
+    */
+
+    document.getElementById("headerTgBtn").href = tgUrl;
+
+    document.getElementById("mainTgBtn").href = tgUrl;
+
+    document.getElementById("stickyTgBtn").href = tgUrl;
+
+
+    /*
+      ===========================
+      INDICATIVE RATE ANIMATION
+      ===========================
+    */
+
+    let currentRate = 105.00;
+
+    const minRate = 105.00;
+
+    const maxRate = 140.00;
+
+    const rateEl =
+      document.getElementById("liveRate");
+
+    const arrowEl =
+      document.getElementById("rateArrow");
+
+
+    setInterval(() => {
+
+      const step =
+        (Math.random() * 4.5) + 0.5;
+
+      const isUp =
+        Math.random() > 0.45;
+
+
+      if (isUp) {
+
+        currentRate =
+          Math.min(
+            maxRate,
+            currentRate + step
+          );
+
+        arrowEl.textContent = "▲";
+
+        arrowEl.style.color = "#059669";
+
+        arrowEl.style.transform =
+          "translateY(-1px)";
+
+      } else {
+
+        currentRate =
+          Math.max(
+            minRate,
+            currentRate - step
+          );
+
+        arrowEl.textContent = "▼";
+
+        arrowEl.style.color = "#dc2626";
+
+        arrowEl.style.transform =
+          "translateY(1px)";
+      }
+
+
+      if (currentRate >= maxRate) {
+        currentRate = 136.50;
+      }
+
+      if (currentRate <= minRate) {
+        currentRate = 106.20;
+      }
+
+
+      rateEl.textContent =
+        `₹${currentRate.toFixed(2)}`;
+
+    }, 1300);
+
+
+    /*
+      ===========================
+      OPTIONAL LEAD TRACKING
+      ===========================
+    */
+
+    function trackLead(source) {
+
+      console.log(
+        "Telegram CTA clicked:",
+        source
+      );
+
+    }
+
+  </script>
+
+</body>
+</html>
