@@ -23,8 +23,8 @@
        ========================================================================== */
     :root {
       --bg-dark: #050608;
-      --bg-card: rgba(18, 21, 28, 0.72);
-      --bg-card-hover: rgba(26, 31, 42, 0.85);
+      --bg-card: rgba(18, 21, 28, 0.75);
+      --bg-card-hover: rgba(26, 31, 42, 0.88);
       --border-glass: rgba(255, 255, 255, 0.12);
       --border-glass-bright: rgba(255, 255, 255, 0.28);
       
@@ -77,7 +77,6 @@
       transition: background-image 0.5s ease;
     }
 
-    /* Ambient dark glass overlay */
     body::before {
       content: '';
       position: fixed;
@@ -106,44 +105,45 @@
     }
 
     /* ==========================================================================
-       HEADER & NAVIGATION (COMPACT MOBILE FIRST)
+       HEADER: FULLY FIXED, CLEAN SINGLE-LINE MOBILE BRANDING
        ========================================================================== */
     header {
       position: sticky;
       top: 0;
       width: 100%;
-      z-index: 100;
-      padding: 10px 16px;
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      background: rgba(8, 10, 15, 0.82);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      padding: 9px 12px;
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      background: rgba(8, 10, 15, 0.92);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
     }
 
     .header-inner {
-      max-width: 520px;
+      max-width: 480px;
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
     .brand-logo {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       text-decoration: none;
+      min-width: 0;
     }
 
     .brand-avatar-mini {
-      width: 40px;
-      height: 40px;
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
-      padding: 2px;
-      background: linear-gradient(135deg, var(--accent-gold), rgba(255, 255, 255, 0.3), var(--accent-wa));
-      box-shadow: 0 0 12px var(--accent-gold-glow);
+      padding: 1.5px;
+      background: linear-gradient(135deg, var(--accent-gold), rgba(255, 255, 255, 0.4), var(--accent-wa));
+      box-shadow: 0 0 10px var(--accent-gold-glow);
       position: relative;
       flex-shrink: 0;
     }
@@ -161,8 +161,8 @@
       position: absolute;
       bottom: 0px;
       right: 0px;
-      width: 9px;
-      height: 9px;
+      width: 8px;
+      height: 8px;
       background: #10b981;
       border: 1.5px solid #000;
       border-radius: 50%;
@@ -172,62 +172,62 @@
     .logo-text-group {
       display: flex;
       flex-direction: column;
+      min-width: 0;
     }
 
-    .logo-title {
-      font-family: var(--font-display);
-      font-size: 1.05rem;
-      font-weight: 800;
-      letter-spacing: 0.8px;
-      background: linear-gradient(135deg, #ffffff 40%, var(--accent-gold) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .logo-title-row {
       display: flex;
       align-items: center;
       gap: 5px;
+      white-space: nowrap;
     }
 
-    .verified-badge {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 14px;
-      height: 14px;
-      background: var(--accent-gold);
-      color: #000;
-      border-radius: 50%;
-      font-size: 8px;
-      font-weight: 900;
+    .logo-name {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      background: linear-gradient(135deg, #ffffff 40%, var(--accent-gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .verified-gold-icon {
+      color: var(--accent-gold);
+      font-size: 0.85rem;
+      filter: drop-shadow(0 0 4px rgba(229, 185, 102, 0.6));
+      display: inline-block;
     }
 
     .logo-subtitle {
-      font-size: 0.62rem;
-      font-weight: 600;
-      letter-spacing: 0.6px;
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
       color: var(--text-muted);
       text-transform: uppercase;
+      white-space: nowrap;
     }
 
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 8px;
+      flex-shrink: 0;
     }
 
     .header-cta-btn {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      background: linear-gradient(135deg, rgba(37, 211, 102, 0.2), rgba(16, 185, 129, 0.3));
-      border: 1px solid rgba(37, 211, 102, 0.5);
+      gap: 5px;
+      background: linear-gradient(135deg, rgba(37, 211, 102, 0.22), rgba(16, 185, 129, 0.32));
+      border: 1px solid rgba(37, 211, 102, 0.55);
       color: #fff;
-      padding: 6px 12px;
+      padding: 6px 11px;
       border-radius: 30px;
       font-size: 0.74rem;
       font-weight: 700;
       text-decoration: none;
       backdrop-filter: blur(10px);
-      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.2);
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
       white-space: nowrap;
     }
 
@@ -260,7 +260,7 @@
 
     .ticker-content {
       display: inline-flex;
-      animation: tickerScroll 32s linear infinite;
+      animation: tickerScroll 30s linear infinite;
       gap: 32px;
     }
 
@@ -291,7 +291,7 @@
        MOBILE CONTAINER (OPTIMIZED FOR 9:16 TO 9:18 VIEWPORTS)
        ========================================================================== */
     .page-wrapper {
-      max-width: 480px; /* Precise Mobile Frame Width */
+      max-width: 480px;
       margin: 0 auto;
       padding: 18px 14px 40px;
       position: relative;
@@ -371,7 +371,7 @@
       z-index: 3;
     }
 
-    /* Video Script Hook Pill */
+    /* Video Script Hook Tag */
     .script-hook-pill {
       display: inline-flex;
       align-items: center;
@@ -443,7 +443,7 @@
       flex-direction: column;
       gap: 12px;
       width: 100%;
-      margin: 8px 0 20px;
+      margin: 8px 0 16px;
     }
 
     /* Frosted Glass Pill Button (Matches media_1791581880427.png) */
@@ -536,45 +536,50 @@
       transform: scale(0.97);
     }
 
-    /* Neumorphic Segment Pills (Matches media_1791579753393.png) */
+    /* ==========================================================================
+       CLEAN 2-PILL SEGMENT BAR: CDM & WCB (PERFECT 50/50 SYMMETRY)
+       ========================================================================== */
     .tactile-segmented-bar {
       display: flex;
       align-items: center;
-      justify-content: space-between;
       width: 100%;
-      background: rgba(14, 18, 24, 0.85);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(14, 18, 24, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 999px;
       padding: 4px;
-      gap: 4px;
-      margin: 10px 0 16px;
+      gap: 6px;
+      margin: 8px 0 18px;
       box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.7);
     }
 
     .tactile-pill-item {
-      flex: 1;
-      padding: 7px 6px;
+      flex: 1; /* Exactly 50% / 50% balanced split */
+      padding: 9px 8px;
       border-radius: 999px;
-      font-size: 0.72rem;
-      font-weight: 600;
+      font-size: 0.76rem;
+      font-weight: 700;
       color: var(--text-muted);
       cursor: pointer;
       text-align: center;
       transition: all 0.2s ease;
       white-space: nowrap;
       user-select: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
     }
 
     .tactile-pill-item.active {
       background: linear-gradient(180deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.08) 100%);
       color: #ffffff;
       box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.35);
-      border: 1px solid rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     /* ==========================================================================
        USD TO INR CONVERTER & SLIDE-TO-TRANSFER WIDGET
-       (PRECISE RE-CREATION OF USER'S REFERENCE IMAGE media_1791586539370.png)
+       RATE UPDATED TO ₹98.00 / USD
        ========================================================================== */
     .converter-card {
       background: rgba(255, 255, 255, 0.95);
@@ -596,7 +601,7 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 12px;
-      font-size: 0.72rem;
+      font-size: 0.74rem;
       font-weight: 700;
       color: #475569;
     }
@@ -607,7 +612,7 @@
       gap: 5px;
       color: #059669;
       background: rgba(16, 185, 129, 0.12);
-      padding: 3px 8px;
+      padding: 3px 9px;
       border-radius: 20px;
     }
 
@@ -847,7 +852,7 @@
     .proof-image-container {
       position: relative;
       width: 100%;
-      height: 270px; /* Perfect for mobile scroll */
+      height: 270px;
       border-radius: 14px;
       overflow: hidden;
       background: #080a0f;
@@ -1149,7 +1154,7 @@
     }
 
     /* ==========================================================================
-       STICKY BOTTOM MOBILE DOCK (DESIGNED SPECIFICALLY FOR 9:16 - 9:18 THUMB ZONE)
+       STICKY BOTTOM MOBILE DOCK (THUMB ZONE)
        ========================================================================== */
     .mobile-floating-dock {
       position: fixed;
@@ -1356,7 +1361,7 @@
     <span id="toastMsg">Number Copied to Clipboard!</span>
   </div>
 
-  <!-- Header -->
+  <!-- FIXED & CLEAN HEADER -->
   <header>
     <div class="header-inner">
       <a href="#" class="brand-logo">
@@ -1364,8 +1369,9 @@
           <img src="https://d1yei2z3i6k35z.cloudfront.net/13184094/6ac971684e8872.63229400_Screenshot2026-10-07135430.png" alt="Funded Squad WhatsApp DP">
         </div>
         <div class="logo-text-group">
-          <div class="logo-title">
-            FUNDED SQUAD <span class="verified-badge">✓</span>
+          <div class="logo-title-row">
+            <span class="logo-name">FUNDED SQUAD</span>
+            <i class="fa-solid fa-circle-check verified-gold-icon"></i>
           </div>
           <div class="logo-subtitle">PROP PAYOUT & P2P CONCIERGE</div>
         </div>
@@ -1380,16 +1386,18 @@
     </div>
   </header>
 
-  <!-- Live Marquee Ticker -->
+  <!-- Live Marquee Ticker (Amounts updated for ₹98/USD) -->
   <div class="ticker-bar">
     <div class="ticker-content">
       <div class="ticker-item"><i class="fa-solid fa-shield-halved" style="color:#10b981;"></i> <strong>ZERO BANK FREEZES:</strong> 100% CDM Verified Route</div>
-      <div class="ticker-item"><i class="fa-solid fa-bolt" style="color:var(--accent-gold);"></i> Cleared: <strong>$2,800 (₹2,49,760)</strong> via CDM Deposit <span class="highlight">FundedNext</span></div>
+      <div class="ticker-item"><i class="fa-solid fa-bolt" style="color:var(--accent-gold);"></i> Cleared: <strong>$2,800 (₹2,74,400)</strong> via CDM Deposit <span class="highlight">FundedNext</span></div>
       <div class="ticker-item"><i class="fa-solid fa-mug-hot" style="color:#38bdf8;"></i> Nominal Fee: <strong>Coffee-Sized Charge</strong> • No Hidden Cuts</div>
-      <div class="ticker-item"><i class="fa-solid fa-check-double" style="color:#25D366;"></i> Cleared: <strong>$6,500 (₹5,79,800)</strong> Clean RTGS <span class="highlight">FTMO Trader</span></div>
+      <div class="ticker-item"><i class="fa-solid fa-check-double" style="color:#25D366;"></i> Cleared: <strong>$6,500 (₹6,37,000)</strong> Clean RTGS <span class="highlight">FTMO Trader</span></div>
+      <div class="ticker-item"><i class="fa-solid fa-bolt" style="color:var(--accent-gold);"></i> Cleared: <strong>$1,500 (₹1,47,000)</strong> Instant CDM Cash <span class="highlight">FundingPips</span></div>
       <!-- Duplicate for infinite smooth loop -->
       <div class="ticker-item"><i class="fa-solid fa-shield-halved" style="color:#10b981;"></i> <strong>ZERO BANK FREEZES:</strong> 100% CDM Verified Route</div>
-      <div class="ticker-item"><i class="fa-solid fa-bolt" style="color:var(--accent-gold);"></i> Cleared: <strong>$2,800 (₹2,49,760)</strong> via CDM Deposit <span class="highlight">FundedNext</span></div>
+      <div class="ticker-item"><i class="fa-solid fa-bolt" style="color:var(--accent-gold);"></i> Cleared: <strong>$2,800 (₹2,74,400)</strong> via CDM Deposit <span class="highlight">FundedNext</span></div>
+      <div class="ticker-item"><i class="fa-solid fa-check-double" style="color:#25D366;"></i> Cleared: <strong>$6,500 (₹6,37,000)</strong> Clean RTGS <span class="highlight">FTMO Trader</span></div>
     </div>
   </div>
 
@@ -1451,28 +1459,25 @@
 
       </div>
 
-      <!-- Tactile Segments for Modes (media_1791579753393.png) -->
+      <!-- CLEAN 2-PILL SEGMENT: ONLY CDM & WCB (PERFECT 50/50 FIT) -->
       <div class="tactile-segmented-bar">
         <div class="tactile-pill-item active" onclick="switchRouteTab(this, 'cdm')">
           <i class="fa-solid fa-money-bill-transfer"></i> CDM Cash Deposit
         </div>
         <div class="tactile-pill-item" onclick="switchRouteTab(this, 'bank')">
-          <i class="fa-solid fa-building-columns"></i> White Current Bank
-        </div>
-        <div class="tactile-pill-item" onclick="switchRouteTab(this, 'tax')">
-          <i class="fa-solid fa-file-invoice"></i> CA 44ADA Advisory
+          <i class="fa-solid fa-building-columns"></i> White Current Bank (WCB)
         </div>
       </div>
 
     </section>
 
-    <!-- ================= INTERACTIVE USD TO INR WIDGET (FROM USER IMAGE media_1791586539370.png) ================= -->
+    <!-- ================= INTERACTIVE USD TO INR WIDGET (RATE = ₹98.00) ================= -->
     <div class="converter-card" id="converterCard">
       
       <!-- Top Live Status -->
       <div class="rate-badge">
         <div class="live-dot">
-          <span class="pulse-dot"></span> 1 USD = ₹<span id="rateValueDisplay">89.20</span>
+          <span class="pulse-dot"></span> 1 USD = ₹<span id="rateValueDisplay">98.00</span>
         </div>
         <span style="color:#059669; font-weight:700;"><i class="fa-solid fa-mug-hot"></i> Coffee-Sized Fee</span>
       </div>
@@ -1511,7 +1516,7 @@
         </div>
       </div>
 
-      <!-- TO INR ROW -->
+      <!-- TO INR ROW (RATE = 98 => 1000 USD = ₹98,000.00) -->
       <div class="currency-row">
         <div class="currency-header">
           <div class="currency-select-trigger">
@@ -1526,7 +1531,7 @@
         </div>
 
         <div class="inr-output-display" id="inrOutput">
-          ₹89,200.00
+          ₹98,000.00
         </div>
         
         <div class="clean-route-tag" id="routeTagDesc">
@@ -1766,7 +1771,7 @@
 
   </main>
 
-  <!-- ================= STICKY MOBILE DOCK (THUMB ZONE) ================= -->
+  <!-- ================= STICKY BOTTOM MOBILE DOCK (THUMB ZONE) ================= -->
   <div class="mobile-floating-dock">
     <div class="dock-info">
       <div class="dock-title">
@@ -1835,8 +1840,8 @@
 
   <!-- ================= SCRIPTS ================= -->
   <script>
-    // 1. CURRENCY CONVERTER LOGIC
-    const exchangeRate = 89.20;
+    // 1. CURRENCY CONVERTER LOGIC (UPDATED TO RATE = ₹98.00 / USD)
+    const exchangeRate = 98.00;
     const usdInput = document.getElementById('usdInput');
     const inrOutput = document.getElementById('inrOutput');
     const flipConvertBtn = document.getElementById('flipConvertBtn');
@@ -1854,7 +1859,7 @@
     usdInput.addEventListener('input', calculateInr);
     flipConvertBtn.addEventListener('click', () => {
       calculateInr();
-      showToast('Live Rate: ₹' + exchangeRate + ' / USD');
+      showToast('Live Rate: ₹' + exchangeRate.toFixed(2) + ' / USD');
     });
 
     function setPresetUsd(amount) {
@@ -1931,8 +1936,8 @@
       if (navigator.vibrate) navigator.vibrate([40, 80]);
 
       const amount = usdInput.value || '1000';
-      const inrText = inrOutput.innerText || '₹89,200';
-      const msg = encodeURIComponent(`Hello Funded Squad, I saw your video ad. I want to safely exchange $${amount} USD (${inrText}) into clean INR.`);
+      const inrText = inrOutput.innerText || '₹98,000.00';
+      const msg = encodeURIComponent(`Hello Funded Squad, I saw your video ad. I want to safely exchange $${amount} USD (${inrText} @ ₹98/USD) into clean INR.`);
       const waUrl = `https://wa.me/917023046903?text=${msg}`;
 
       showToast('Opening WhatsApp Consultation...');
@@ -1974,7 +1979,7 @@
 
     slideKnob.addEventListener('touchend', endDrag);
 
-    // 3. ROUTE TABS
+    // 3. ROUTE TABS (CDM & WCB ONLY)
     function switchRouteTab(element, mode) {
       document.querySelectorAll('.tactile-pill-item').forEach(pill => pill.classList.remove('active'));
       element.classList.add('active');
@@ -1983,12 +1988,9 @@
       if (mode === 'cdm') {
         routeTag.innerHTML = '<i class="fa-solid fa-shield-check"></i> 0% Cyber Freeze Risk • Cash CDM Route';
         showToast('Route: CDM Cash Deposit (0% Freeze)');
-      } else if (mode === 'bank') {
-        routeTag.innerHTML = '<i class="fa-solid fa-building-columns"></i> Verified Current Account RTGS • 100% Tax Invoice';
-        showToast('Route: Clean Current Account RTGS');
       } else {
-        routeTag.innerHTML = '<i class="fa-solid fa-file-invoice"></i> CA Software Export Advisory (44ADA Scheme)';
-        showToast('Route: CA Legal 44ADA Guidance');
+        routeTag.innerHTML = '<i class="fa-solid fa-building-columns"></i> Verified Current Account RTGS • 100% Tax Compliant';
+        showToast('Route: White Current Bank (WCB)');
       }
     }
 
@@ -2042,7 +2044,7 @@
       }, 2500);
     }
 
-    // Initial calculation
+    // Initial calculation with rate 98.00
     calculateInr();
   </script>
 
