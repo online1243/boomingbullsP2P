@@ -205,7 +205,63 @@
             gap: 12px;
             transition: all 0.3s ease;
         }
+/* Bottom Right Floating Hook */
+.luxury-bottom-badge {
+    position: fixed;
+    bottom: 20px;
+    right: 18px;
+    max-width: 240px;
+    background: rgba(14, 15, 18, 0.88);
+    border: 1px solid rgba(212, 175, 55, 0.45);
+    border-radius: 16px;
+    padding: 12px 14px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.85), 0 0 20px rgba(212, 175, 55, 0.18);
+    backdrop-filter: blur(14px);
+    z-index: 10;
+    text-align: left;
+    animation: floatHook 4s ease-in-out infinite;
+}
 
+@keyframes floatHook {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+.luxury-bottom-badge .badge-title {
+    font-size: 12px;
+    font-weight: 800;
+    color: #f6e5a6;
+    letter-spacing: 0.4px;
+    margin-bottom: 4px;
+    line-height: 1.3;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.luxury-bottom-badge .badge-desc {
+    font-size: 11px;
+    font-weight: 500;
+    color: #d6caa8;
+    line-height: 1.35;
+    opacity: 0.9;
+}
+
+/* Mobile screen adjustment */
+@media (max-width: 480px) {
+    .luxury-bottom-badge {
+        bottom: 15px;
+        right: 12px;
+        max-width: 190px;
+        padding: 10px 12px;
+    }
+    .luxury-bottom-badge .badge-title {
+        font-size: 11px;
+    }
+    .luxury-bottom-badge .badge-desc {
+        font-size: 10px;
+    }
+}
         .feature-item:hover {
             border-color: rgba(212, 175, 55, 0.45);
             background: rgba(212, 175, 55, 0.04);
@@ -359,4 +415,15 @@
     >
 
 </body>
+
+<!-- Floating Hook on Bottom Right -->
+<div class="luxury-bottom-badge">
+    <div class="badge-title">
+        <span>✨</span> Join Now. Best Channel Ever!
+    </div>
+    <p class="badge-desc">
+        This can teach you more than everything...
+    </p>
+</div>
 </html>
+
